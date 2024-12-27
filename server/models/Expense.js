@@ -37,6 +37,12 @@ const expenseSchema = new mongoose.Schema({
     enum: ['Paid', 'Pending', 'Partial'],
     required: true,
   },
+  transactionId: {
+    type: String,
+  },
+  balanceAmount: {
+    type: Number,
+  },
 }, { timestamps: true });
 
 export default mongoose.model('Expense', expenseSchema);

@@ -17,6 +17,8 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSubmit, onClose }) => {
     day: "Monday",
     paymentMode: "Cash",
     paymentStatus: "Paid",
+    balanceAmount: "",
+    transactionId: "",
   });
 
   const days = [
@@ -184,6 +186,37 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSubmit, onClose }) => {
                 ))}
               </select>
             </div>
+
+            {(formData.paymentStatus === "Partial" || (formData.paymentMode === "Cash" && formData.paymentStatus === "Partial" )) && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Balance Amount
+                </label>
+                <input
+                  type="number"
+                  name="balanceAmount"
+                  value={formData.balanceAmount}
+                  onChange={handleChange}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+            )}
+
+            {formData.paymentMode !== "Cash" && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Transaction ID
+                </label>
+                <input
+                  type="text"
+                  name="transactionId"
+                  value={formData.transactionId}
+                  onChange={handleChange}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+            )}
           </div>
 
           <div>
